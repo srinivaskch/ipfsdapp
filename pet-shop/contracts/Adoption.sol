@@ -1,0 +1,18 @@
+pragma solidity ^0.5.0;
+
+contract Adoption {
+// array of 16 addresses where the key is the dogId
+ // and the value is the address of the account
+ // doing the adopting.
+ address[16] public adopters;
+
+ function adopt(uint petId) public returns (uint) {
+   require(petId >= 0 && petId <= 15);
+   adopters[petId] = msg.sender; // the account who called this function
+   return petId;
+ }
+
+ function getAdopters() public view returns (address[16] memory) {
+   return adopters;
+ }
+}
